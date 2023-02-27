@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  athena:
+    image: athenaos/core
+    cap_add:
+      - net_admin
+      - net_raw
+    devices:
+      - /dev/net/tun
+    secrets:
+       - htb-api
+    tmpfs:
+      - /run
+      - /tmp
+    restart: unless-stopped

@@ -64,7 +64,7 @@ services:
 ### podman cli
 
 ```bash
-podman run -d \
+podman run -ti \
   --name=athena \
   --secret htb-api \
   --cap-add=NET_RAW \
@@ -72,6 +72,25 @@ podman run -d \
   --device /dev/net/tun \
   --restart unless-stopped \
   docker.io/athenaos/core:latest
+```
+
+In case you exit the container and need to re-enter, run:
+```
+podman exec -ti athena /bin/bash
+```
+In case the container is not running, run:
+```
+podman start athena
+```
+
+For stopping the container, run:
+```
+podman stop athena
+```
+
+For deleting the container, run:
+```
+podman container rm athena
 ```
 
 ## Parameters

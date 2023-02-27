@@ -20,7 +20,7 @@ Find us at:
 
 Athena OS container has been developed in order to be run by podman instead of docker. The choice to use podman comes from its advantages over docker, one of most important: security.
 
-Install `podman` and `podman-compose` packages for your Linux environment.
+Install `podman` package for your Linux environment.
 
 Edit `/etc/containers/registries.conf` and add:
 ```
@@ -86,14 +86,6 @@ Container images are configured using parameters passed at runtime (such as thos
 ## Updating Info
 
 Below are the instructions for updating containers:
-
-### Via Podman Compose
-
-* Update all images: `podman-compose pull`
-  * or update a single image: `podman-compose pull athena`
-* Let compose update all containers as necessary: `podman-compose up -d`
-  * or update a single container: `podman-compose up -d athena`
-* You can also remove the old dangling images: `podman image prune`
 
 ### Via Podman Run
 

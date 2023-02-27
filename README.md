@@ -5,10 +5,10 @@
 
 Athena OS container brings you to live a funny hacking experience in a containerized environment:
 
-* select your favourite InfoSec role
-* play Hack The Box machines for improving your skills
-* explore more than 2800+ hacking tools retrievable by Arch Linux and BlackArch repositories
-* make your CTF or ethical hacking activity efficient
+* Select your favourite **InfoSec role** between Black Hat, Red Teamer, OSINT Specialist and much more
+* Play **Hack The Box** machines for improving your skills
+* Explore more than **2800+ hacking tools** retrievable by Arch Linux and BlackArch repositories
+* Make your **Capture The Flag** or **ethical hacking** activity efficient
 
 Find us at:
 

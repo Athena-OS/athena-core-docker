@@ -72,7 +72,7 @@ podman run -d \
 Container images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
 | Parameter | Function |
-| :----: | --- |
+| ---- | --- |
 | `--secret htb-api` | usage of App Token on the container |
 | `--cap-add=NET_RAW ` | needed for running ping command |
 | `--cap-add NET_ADMIN` | needed for running OpenVPN |

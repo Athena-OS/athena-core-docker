@@ -1,6 +1,7 @@
 # Athena OS Docker Image
 
-![athena-banner](https://user-images.githubusercontent.com/83867734/221651225-1a103821-4e8c-4555-89cf-048a8bc06b65.png)
+![athena-banner](https://user-images.githubusercontent.com/83867734/221656804-51b13a4f-876b-4ca8-856e-288d2209a949.png)
+
 
 Athena OS container brings you to live a funny hacking experience in a containerized environment:
 

@@ -40,7 +40,7 @@ version: '3.4'
 
 services:
   athena:
-    image: athenaos/coreathena
+    image: athenaos/core
     cap_add:
       - net_admin
       - net_raw

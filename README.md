@@ -20,6 +20,8 @@ Find us at:
 
 Athena OS container has been developed in order to be run by podman instead of docker. The choice to use podman comes from its advantages over docker, one of most important: security.
 
+Install `podman` and `podman-compose` packages for your Linux environment.
+
 Athena OS container allows you to learn and play on Hack The Box platform. It is possible to access to Hack The Box by using your App Token. Retrieve your App Token from the Hack The Box website in your Profile Settings.
 
 Store your App Token in a file called `htb-api-file`, save and close it, and then run:

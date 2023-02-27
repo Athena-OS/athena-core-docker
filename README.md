@@ -22,6 +22,13 @@ Athena OS container has been developed in order to be run by podman instead of d
 
 Install `podman` and `podman-compose` packages for your Linux environment.
 
+Edit `/etc/containers/registries.conf` and add:
+```
+[registries.search]
+registries = ['docker.io']
+```
+in order to allow podman to search for images in Docker Hub.
+
 Athena OS container allows you to learn and play on Hack The Box platform. It is possible to access to Hack The Box by using your App Token. Retrieve your App Token from the Hack The Box website in your Profile Settings.
 
 Store your App Token in a file called `htb-api-file`, save and close it, and then run:

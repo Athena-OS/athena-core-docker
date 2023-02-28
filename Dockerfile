@@ -66,7 +66,9 @@ RUN usermod -aG wheel $NON_ROOT_USER && echo "$NON_ROOT_USER ALL=(ALL) NOPASSWD:
 RUN chmod 044 /etc/sudoers.d/$NON_ROOT_USER
 RUN echo -e "root\nroot" | passwd "root"
 RUN echo -e "$NON_ROOT_USER\n$NON_ROOT_USER" | passwd "$NON_ROOT_USER"
+RUN sed -i "/export SHELL=/c\export SHELL=\$(which zsh)" /home/$NON_ROOT_USER/.bashrc
 RUN echo "exec zsh" >> /home/$NON_ROOT_USER/.bashrc
+
 
 USER $NON_ROOT_USER:$NON_ROOT_USER
 WORKDIR /home/$NON_ROOT_USER

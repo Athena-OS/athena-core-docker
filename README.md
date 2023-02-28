@@ -44,9 +44,9 @@ You can run Athena OS container in by podman cli.
 
 ```bash
 podman run -ti \
-  --name=athena \
+  --name athena \
   --secret htb-api \
-  --cap-add=NET_RAW \
+  --cap-add NET_RAW \
   --cap-add NET_ADMIN \
   --device /dev/net/tun \
   --restart unless-stopped \

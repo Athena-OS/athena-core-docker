@@ -20,7 +20,7 @@ Find us at:
 
 Athena OS container has been developed in order to be run also by podman. The choice to use podman comes from its advantages over docker, one of most important: security.
 
-According to your preference, install `docker` or `podman` package for your Linux environment.
+According to your preference, install `docker` and `docker-compose` packages or `podman` package for your Linux environment.
 
 In case you are using podman, edit `/etc/containers/registries.conf` and add:
 ```
@@ -36,6 +36,40 @@ Athena OS container allows you to learn and play on Hack The Box platform. It is
 ### Docker
 
 Store your App Token in a file called `htb-api-file` in your current directory, save and close it.
+
+You can run the container by `docker-compose` (recommended) or `docker run`.
+
+#### docker-compose
+
+The `docker-compose.yml` file should have the following content:
+```yaml
+version: '3.4'
+
+services:
+  athena:
+    image: athenaos/core
+    cap_add:
+      - net_admin
+    devices:
+      - /dev/net/tun
+    secrets:
+       - source: htb-api
+    tmpfs:
+      - /run
+      - /tmp
+    restart: unless-stopped
+
+secrets:
+  htb-api:
+    file: ./htb-api-file
+```
+and the `htb-api-file` must be in the same directory, otherwise you can change its path in `docker-compose.yml`.
+
+Run the container by:
+```
+sudo docker-compose up --build
+sudo docker-compose run athena
+```
 
 #### docker run
 

@@ -76,7 +76,7 @@ sudo docker-compose run athena
 ```bash
 docker run -ti \
   --name athena \
-  --volume htb-api-file:/run/secrets/htb-api:ro \
+  --volume ./htb-api-file:/run/secrets/htb-api:ro \
   --cap-add NET_ADMIN \
   --device /dev/net/tun \
   --restart unless-stopped \

@@ -15,8 +15,9 @@ Find us at:
 * [Discord](https://discord.gg/DNjvQkb5Ad) - realtime support / chat with the community and the team.
 * [GitHub](https://github.com/Athena-OS) - view the source for all of our repositories.
 
-
 ## Usage
+
+![image](https://user-images.githubusercontent.com/83867734/222000470-f65a5ff3-90ea-435b-b30f-0143c668cbcd.png)
 
 Athena OS container has been developed in order to be run also by podman. The choice to use podman comes from its advantages over docker, one of most important: security.
 

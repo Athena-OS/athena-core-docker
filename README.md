@@ -70,7 +70,6 @@ and the `htb-api-file` must be in the same directory, otherwise you can change i
 
 Run the container by:
 ```
-sudo docker-compose up --build
 sudo docker-compose run athena
 ```
 

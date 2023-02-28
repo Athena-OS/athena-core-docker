@@ -52,6 +52,8 @@ services:
       - net_admin
     devices:
       - /dev/net/tun
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
     secrets:
        - source: htb-api
     tmpfs:
@@ -79,6 +81,7 @@ docker run -ti \
   --volume ./htb-api-file:/run/secrets/htb-api:ro \
   --cap-add NET_ADMIN \
   --device /dev/net/tun \
+  --sysctl net.ipv6.conf.all.disable_ipv6=0 \
   --restart unless-stopped \
   docker.io/athenaos/core:latest
 ```

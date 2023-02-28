@@ -18,18 +18,57 @@ Find us at:
 
 ## Usage
 
-Athena OS container has been developed in order to be run by podman instead of docker. The choice to use podman comes from its advantages over docker, one of most important: security.
+Athena OS container has been developed in order to be run also by podman. The choice to use podman comes from its advantages over docker, one of most important: security.
 
-Install `podman` package for your Linux environment.
+According to your preference, install `docker` or `podman` package for your Linux environment.
 
-Edit `/etc/containers/registries.conf` and add:
+In case you are using podman, edit `/etc/containers/registries.conf` and add:
 ```
 [registries.search]
 registries = ['docker.io']
 ```
 in order to allow podman to search for images in Docker Hub.
 
+### Hack The Box API Token
+
 Athena OS container allows you to learn and play on Hack The Box platform. It is possible to access to Hack The Box by using your App Token. Retrieve your App Token from the Hack The Box website in your Profile Settings.
+
+### Docker
+
+Store your App Token in a file called `htb-api-file` in your current directory, save and close it.
+
+#### docker run
+
+```bash
+docker run -ti \
+  --name athena \
+  --volume htb-api-file:/run/secrets/htb-api:ro \
+  --cap-add NET_ADMIN \
+  --device /dev/net/tun \
+  --restart unless-stopped \
+  docker.io/athenaos/core:latest
+```
+
+In case you exit the container and need to re-enter, run:
+```
+docker exec -ti athena /bin/bash
+```
+In case the container is not running, run:
+```
+docker start athena
+```
+
+For stopping the container, run:
+```
+docker stop athena
+```
+
+For deleting the container, run:
+```
+docker container rm athena
+```
+
+### Podman
 
 Store your App Token in a file called `htb-api-file`, save and close it, and then run:
 
@@ -38,9 +77,9 @@ podman secret create htb-api htb-api-file
 ```
 In this manner, podman will store securely your API key. Now, you can delete the `htb-api-file` by `rm -rf htb-api-file`.
 
-You can run Athena OS container in by podman cli.
+You can run Athena OS container in by docker run, docker compose or podman run.
 
-### podman cli
+#### podman run
 
 ```bash
 podman run -ti \

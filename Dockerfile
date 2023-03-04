@@ -1,8 +1,9 @@
 FROM athenaos/base
 
-ENV NON_ROOT_USER=athena
 ENV LANG=en_US.UTF-8
 ENV TERM=xterm-256color
+ENV PUSER=athena
+ENV PUID=1000
 
 # Configure the locale; enable only en_US.UTF-8 and the current locale.
 RUN sed -i -e 's~^\([^#]\)~#\1~' '/etc/locale.gen' && \
@@ -19,7 +20,7 @@ RUN pacman -Syu --noconfirm
 ###                  BASIC PACKAGES                 ###
 #######################################################
 
-RUN pacman -Syu --noconfirm --needed accountsservice btrfs-progs dialog inetutils make man-db man-pages most nano nbd net-tools netctl pv rsync sudo timelineproject-hg xdg-user-dirs
+RUN pacman -Syu --noconfirm --needed accountsservice btrfs-progs dialog gcc inetutils make man-db man-pages most nano nbd net-tools netctl pv rsync sudo timelineproject-hg xdg-user-dirs
 
 #######################################################
 ###                   DEPENDENCIES                  ###
@@ -61,17 +62,17 @@ RUN pacman -Syu --noconfirm --needed athena-application-config athena-keyring at
 RUN athena-motd
 RUN echo "cat /etc/motd" >> /etc/bash.bashrc
 RUN systemd-machine-id-setup
-RUN useradd -ms /bin/bash $NON_ROOT_USER
-RUN usermod -aG wheel $NON_ROOT_USER && echo "$NON_ROOT_USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$NON_ROOT_USER
-RUN chmod 044 /etc/sudoers.d/$NON_ROOT_USER
+RUN useradd -ms /bin/bash $PUSER
+RUN usermod -aG users,lp,network,power,sys,wheel -u "$PUID" $PUSER && echo "$PUSER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$PUSER
+RUN chmod 044 /etc/sudoers.d/$PUSER
 RUN echo -e "root\nroot" | passwd "root"
-RUN echo -e "$NON_ROOT_USER\n$NON_ROOT_USER" | passwd "$NON_ROOT_USER"
-RUN sed -i "/export SHELL=/c\export SHELL=\$(which zsh)" /home/$NON_ROOT_USER/.bashrc
-RUN echo "exec zsh" >> /home/$NON_ROOT_USER/.bashrc
+RUN echo -e "$PUSER\n$PUSER" | passwd "$PUSER"
+RUN sed -i "/export SHELL=/c\export SHELL=\$(which zsh)" /home/$PUSER/.bashrc
+RUN echo "exec zsh" >> /home/$PUSER/.bashrc
 
 
-USER $NON_ROOT_USER:$NON_ROOT_USER
-WORKDIR /home/$NON_ROOT_USER
+USER $PUSER:$PUSER
+WORKDIR /home/$PUSER
 RUN xdg-user-dirs-update
 
 CMD ["/bin/bash"]

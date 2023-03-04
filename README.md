@@ -185,6 +185,18 @@ podman build \
   -t docker.io/athenaos/core:latest .
 ```
 
+For pushing to Docker Hub, first login to it:
+
+```bash
+podman login
+```
+
+and then:
+
+```
+podman push athenaos/core:latest
+```
+
 The ARM variants can be built on x86_64 hardware using `multiarch/qemu-user-static`
 
 ```bash

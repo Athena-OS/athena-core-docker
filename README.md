@@ -180,6 +180,7 @@ git clone https://github.com/Athena-OS/athena-core-docker.git
 cd athena-core-docker
 podman build \
   --no-cache \
+  --network host \
   --pull \
   -t docker.io/athenaos/core:latest .
 ```

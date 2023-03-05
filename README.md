@@ -147,6 +147,11 @@ For deleting the container, run:
 ```
 podman container rm athena
 ```
+### Default Credentials
+
+```
+athena:athena
+```
 
 ## Parameters
 

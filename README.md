@@ -114,7 +114,7 @@ podman secret create htb-api htb-api-file
 ```
 In this manner, podman will store securely your API key. Now, you can delete the `htb-api-file` by `rm -rf htb-api-file`.
 
-You can run Athena OS container in by docker run, docker compose or podman run.
+You can run the container by `podman run`.
 
 #### podman run
 

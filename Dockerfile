@@ -59,7 +59,7 @@ RUN pacman -Syu --noconfirm --needed blackarch-keyring blackarch-mirrorlist
 
 RUN pacman -Syu --noconfirm --needed athena-application-config athena-keyring athena-nvchad athena-welcome athena-zsh figlet-fonts htb-tools myman nist-feed superbfetch-git toilet-fonts
 
-RUN athena-motd
+RUN athena-motd -f /etc/motd
 RUN echo "cat /etc/motd" >> /etc/bash.bashrc
 RUN systemd-machine-id-setup
 RUN useradd -ms /bin/bash $PUSER

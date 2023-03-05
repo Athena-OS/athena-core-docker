@@ -4,6 +4,7 @@ ENV LANG=en_US.UTF-8
 ENV TERM=xterm-256color
 ENV PUSER=athena
 ENV PUID=1000
+ENV MOTD=/etc/motd
 
 # Configure the locale; enable only en_US.UTF-8 and the current locale.
 RUN sed -i -e 's~^\([^#]\)~#\1~' '/etc/locale.gen' && \
@@ -59,8 +60,8 @@ RUN pacman -Syu --noconfirm --needed blackarch-keyring blackarch-mirrorlist
 
 RUN pacman -Syu --noconfirm --needed athena-application-config athena-keyring athena-nvchad athena-welcome athena-zsh figlet-fonts htb-tools myman nist-feed superbfetch-git toilet-fonts
 
-RUN athena-motd -f /etc/motd
-RUN echo "cat /etc/motd" >> /etc/bash.bashrc
+RUN athena-motd -f $MOTD
+RUN echo "cat $MOTD" >> /etc/bash.bashrc
 RUN systemd-machine-id-setup
 RUN useradd -ms /bin/bash $PUSER
 RUN usermod -aG users,lp,network,power,sys,wheel -u "$PUID" $PUSER && echo "$PUSER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$PUSER
@@ -69,7 +70,6 @@ RUN echo -e "root\nroot" | passwd "root"
 RUN echo -e "$PUSER\n$PUSER" | passwd "$PUSER"
 RUN sed -i "/export SHELL=/c\export SHELL=\$(which zsh)" /home/$PUSER/.bashrc
 RUN echo "exec zsh" >> /home/$PUSER/.bashrc
-
 
 USER $PUSER:$PUSER
 WORKDIR /home/$PUSER

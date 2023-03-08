@@ -52,13 +52,16 @@ RUN pacman -Syu --noconfirm --needed openssl shellinabox
 
 RUN pacman -Syu --noconfirm --needed athena-application-config athena-nvchad athena-welcome athena-zsh figlet-fonts htb-tools myman nist-feed superbfetch-git toilet-fonts
 
-RUN athena-motd -f $MOTD
+# Copy the configuration files and scripts.
+COPY rootfs/ /
+
 RUN echo "cat $MOTD" >> /etc/zsh/zprofile
 RUN systemd-machine-id-setup
+RUN rm -rf /etc/skel/.bashrc.pacnew /etc/skel/.flag-work-once
+
 RUN useradd -ms /bin/zsh $PUSER
 RUN usermod -aG users,lp,network,power,sys,wheel -u "$PUID" $PUSER && echo "$PUSER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$PUSER
 RUN chmod 044 /etc/sudoers.d/$PUSER
-RUN echo -e "root\nroot" | passwd "root"
 RUN echo -e "$PUSER\n$PUSER" | passwd "$PUSER"
 RUN sed -i "s/source ~\/.bash_aliases/source ~\/.bash_aliases\nsource ~\/.bashrc/g" /home/$PUSER/.zshrc
 
@@ -66,4 +69,5 @@ USER $PUSER:$PUSER
 WORKDIR /home/$PUSER
 RUN xdg-user-dirs-update
 
-CMD ["/bin/zsh"]
+# Running as login shell for executing /etc/zsh/zprofile script and the custom MOTD
+CMD ["/bin/zsh", "-l"]

@@ -183,7 +183,7 @@ If you want to make local modifications to these images for development purposes
 ```bash
 git clone https://github.com/Athena-OS/athena-core-docker.git
 cd athena-core-docker
-podman build \
+docker build \
   --no-cache \
   --network host \
   --pull \
@@ -193,19 +193,19 @@ podman build \
 For pushing to Docker Hub, first login to it:
 
 ```bash
-podman login
+docker login
 ```
 
 and then:
 
 ```
-podman push athenaos/core:latest
+docker push athenaos/core:latest
 ```
 
 The ARM variants can be built on x86_64 hardware using `multiarch/qemu-user-static`
 
 ```bash
-podman run --rm --privileged multiarch/qemu-user-static:register --reset
+docker run --rm --privileged multiarch/qemu-user-static:register --reset
 ```
 
 Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64`. This method has not been tested yet.

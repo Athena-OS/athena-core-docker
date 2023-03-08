@@ -1,7 +1,7 @@
-FROM athenaos/base
+FROM athenaos/base:latest
 
 ENV LANG=en_US.UTF-8
-ENV TERM=xterm-256color
+ENV TZ=Europe/Zurich
 ENV PUSER=athena
 ENV PUID=1000
 ENV MOTD=/etc/motd
@@ -14,6 +14,10 @@ RUN sed -i -e 's~^\([^#]\)~#\1~' '/etc/locale.gen' && \
   fi && \
   locale-gen && \
   echo -e "LANG=${LANG}\nLC_ADDRESS=${LANG}\nLC_IDENTIFICATION=${LANG}\nLC_MEASUREMENT=${LANG}\nLC_MONETARY=${LANG}\nLC_NAME=${LANG}\nLC_NUMERIC=${LANG}\nLC_PAPER=${LANG}\nLC_TELEPHONE=${LANG}\nLC_TIME=${LANG}" > '/etc/locale.conf'
+
+# Configure the timezone.
+RUN echo "${TZ}" > /etc/timezone && \
+  ln -sf "/usr/share/zoneinfo/${TZ}" /etc/localtime
 
 RUN pacman -Syu --noconfirm
 
@@ -43,36 +47,23 @@ RUN pacman -Syu --noconfirm --needed asciinema bashtop bat bc cmatrix cowsay cro
 RUN pacman -Syu --noconfirm --needed openssl shellinabox
 
 #######################################################
-###                   CHAOTIC AUR                   ###
-#######################################################
-
-RUN pacman -Syu --noconfirm --needed chaotic-keyring chaotic-mirrorlist powershell
-
-#######################################################
-###                    BLACKARCH                    ###
-#######################################################
-
-RUN pacman -Syu --noconfirm --needed blackarch-keyring blackarch-mirrorlist
-
-#######################################################
 ###                ATHENA REPOSITORY                ###
 #######################################################
 
-RUN pacman -Syu --noconfirm --needed athena-application-config athena-keyring athena-nvchad athena-welcome athena-zsh figlet-fonts htb-tools myman nist-feed superbfetch-git toilet-fonts
+RUN pacman -Syu --noconfirm --needed athena-application-config athena-nvchad athena-welcome athena-zsh figlet-fonts htb-tools myman nist-feed superbfetch-git toilet-fonts
 
 RUN athena-motd -f $MOTD
-RUN echo "cat $MOTD" >> /etc/bash.bashrc
+RUN echo "cat $MOTD" >> /etc/zsh/zprofile
 RUN systemd-machine-id-setup
-RUN useradd -ms /bin/bash $PUSER
+RUN useradd -ms /bin/zsh $PUSER
 RUN usermod -aG users,lp,network,power,sys,wheel -u "$PUID" $PUSER && echo "$PUSER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$PUSER
 RUN chmod 044 /etc/sudoers.d/$PUSER
 RUN echo -e "root\nroot" | passwd "root"
 RUN echo -e "$PUSER\n$PUSER" | passwd "$PUSER"
-RUN sed -i "/export SHELL=/c\export SHELL=\$(which zsh)" /home/$PUSER/.bashrc
-RUN echo "exec zsh" >> /home/$PUSER/.bashrc
+RUN sed -i "s/source ~\/.bash_aliases/source ~\/.bash_aliases\nsource ~\/.bashrc/g" /home/$PUSER/.zshrc
 
 USER $PUSER:$PUSER
 WORKDIR /home/$PUSER
 RUN xdg-user-dirs-update
 
-CMD ["/bin/bash"]
+CMD ["/bin/zsh"]

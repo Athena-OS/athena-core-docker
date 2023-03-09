@@ -16,6 +16,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      
+      - name: Install dependencies
+        run: sudo pacman -Sy --noconfirm --needed sed
 
       - name: Build core
         run: |

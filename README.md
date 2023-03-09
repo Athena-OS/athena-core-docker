@@ -85,6 +85,10 @@ docker run -ti \
   --restart unless-stopped \
   docker.io/athenaos/core:latest
 ```
+or
+```
+docker run -ti --name athena --volume ./htb-api-file:/run/secrets/htb-api:ro --cap-add NET_ADMIN --device /dev/net/tun --sysctl net.ipv6.conf.all.disable_ipv6=0 --restart unless-stopped docker.io/athenaos/core:latest
+```
 
 In case you exit the container and need to re-enter, run:
 ```
@@ -128,6 +132,11 @@ podman run -ti \
   --restart unless-stopped \
   docker.io/athenaos/core:latest
 ```
+or
+```
+podman run -ti --name athena --secret htb-api --cap-add NET_RAW --cap-add NET_ADMIN --device /dev/net/tun --restart unless-stopped docker.io/athenaos/core:latest
+```
+Podman will automatically replicate `/etc/hosts` and `/etc/hostname` files of your host. For preventing this, add `--no-hosts` argument to the `podman run` command above.
 
 In case you exit the container and need to re-enter, run:
 ```

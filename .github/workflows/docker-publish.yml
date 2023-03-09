@@ -14,13 +14,13 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     container:
-      image: blackarchlinux/blackarch:base-devel
+      image: athenaos/core
 
     steps:
       - uses: actions/checkout@v3
       
       - name: Install dependencies
-        run: sudo pacman -Sy --noconfirm --needed coreutils docker sed sudo
+        run: sudo pacman -Sy --noconfirm --needed bash coreutils docker sed sudo
 
       - name: Build core
         run: |

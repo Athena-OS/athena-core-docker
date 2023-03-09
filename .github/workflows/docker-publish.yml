@@ -13,8 +13,6 @@ jobs:
   # See also https://docs.docker.com/docker-hub/builds/
   publish:
     runs-on: ubuntu-latest
-    container:
-      image: athenaos/core
 
     steps:
       - uses: actions/checkout@v3

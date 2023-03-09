@@ -5,8 +5,7 @@ ENV TZ=Europe/Zurich
 ENV PUSER=athena
 ENV PUID=1000
 ENV MOTD=/etc/motd
-RUN sed 's~^\([^#]\)~#\1~' '/etc/locale.gen'
-RUN /usr/bin/echo
+
 # Configure the locale; enable only en_US.UTF-8 and the current locale.
 RUN sed -i -e 's~^\([^#]\)~#\1~' '/etc/locale.gen' && \
   echo -e '\nen_US.UTF-8 UTF-8' >> '/etc/locale.gen' && \

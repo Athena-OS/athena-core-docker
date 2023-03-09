@@ -6,6 +6,9 @@ ENV PUSER=athena
 ENV PUID=1000
 ENV MOTD=/etc/motd
 
+RUN echo "test" > $MOTD
+RUN sed 's~^\([^#]\)~#\1~' '/etc/locale.gen'
+
 # Configure the locale; enable only en_US.UTF-8 and the current locale.
 RUN sed -i -e 's~^\([^#]\)~#\1~' '/etc/locale.gen' && \
   echo -e '\nen_US.UTF-8 UTF-8' >> '/etc/locale.gen' && \

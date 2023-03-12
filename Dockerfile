@@ -4,7 +4,6 @@ ENV LANG=en_US.UTF-8
 ENV TZ=Europe/Zurich
 ENV PUSER=athena
 ENV PUID=1000
-ENV MOTD=/etc/motd
 
 # Configure the locale; enable only en_US.UTF-8 and the current locale.
 RUN sed -i -e 's~^\([^#]\)~#\1~' '/etc/locale.gen' && \
@@ -52,10 +51,7 @@ RUN pacman -Syu --noconfirm --needed openssl shellinabox
 
 RUN pacman -Syu --noconfirm --needed athena-application-config athena-nvchad athena-welcome athena-zsh figlet-fonts htb-tools myman nist-feed superbfetch-git toilet-fonts
 
-# Copy the configuration files and scripts.
-COPY rootfs/ /
-
-RUN echo "source $MOTD" >> /etc/zsh/zprofile
+RUN echo "athena-motd" >> /etc/zsh/zprofile
 RUN systemd-machine-id-setup
 RUN rm -rf /etc/skel/.bashrc.pacnew /etc/skel/.flag-work-once
 

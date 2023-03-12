@@ -55,7 +55,7 @@ RUN pacman -Syu --noconfirm --needed athena-application-config athena-nvchad ath
 # Copy the configuration files and scripts.
 COPY rootfs/ /
 
-RUN echo "cat $MOTD" >> /etc/zsh/zprofile
+RUN echo "source $MOTD" >> /etc/zsh/zprofile
 RUN systemd-machine-id-setup
 RUN rm -rf /etc/skel/.bashrc.pacnew /etc/skel/.flag-work-once
 

@@ -51,7 +51,7 @@ RUN pacman -Syu --noconfirm --needed openssl shellinabox
 
 RUN pacman -Syu --noconfirm --needed athena-application-config athena-nvchad athena-welcome athena-zsh figlet-fonts htb-tools myman nist-feed superbfetch-git toilet-fonts
 
-RUN sed -i "s/PACMAN=`checkupdates | wc -l`/#PACMAN=`checkupdates | wc -l`/g" /usr/local/bin/athena-motd
+RUN sed -i "/PACMAN=/d" /usr/local/bin/athena-motd
 RUN sed -i "/echo -e \"\$B    PACMAN/d" /usr/local/bin/athena-motd
 RUN echo "athena-motd" >> /etc/zsh/zprofile
 

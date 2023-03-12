@@ -46,9 +46,6 @@ N="\033[0m"
 
 detect_virt=$(systemd-detect-virt)
 
-#Clear screen before motd
-cat /dev/null > $motd
-
 echo -e "
         $Y. $W
        $Y/#\ $W         _   _   _                      $Y  ___  ____  

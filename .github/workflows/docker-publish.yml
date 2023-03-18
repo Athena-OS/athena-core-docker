@@ -19,6 +19,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
+      - name: Clear pacman cache
+        run: yes | pacman -Scc
+      
       - name: Install dependencies
         run: pacman -Sy --noconfirm --needed docker
 

@@ -92,7 +92,7 @@ docker run -ti --name athena --volume ./htb-api-file:/run/secrets/htb-api:ro --c
 
 In case you exit the container and need to re-enter, run:
 ```
-docker exec -ti athena /bin/bash
+docker exec --user athena -ti athena /bin/bash
 ```
 In case the container is not running, run:
 ```

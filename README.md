@@ -92,7 +92,7 @@ docker run -ti --name athena --volume ./htb-api-file:/run/secrets/htb-api:ro --c
 
 In case you exit the container and need to re-enter, run:
 ```
-docker exec --user athena -ti athena /bin/bash
+docker exec --user athena -ti athena /bin/zsh
 ```
 In case the container is not running, run:
 ```
@@ -140,7 +140,7 @@ Podman will automatically replicate `/etc/hosts` and `/etc/hostname` files of yo
 
 In case you exit the container and need to re-enter, run:
 ```
-podman exec -ti athena /bin/bash
+podman exec --user athena -ti athena /bin/zsh
 ```
 In case the container is not running, run:
 ```

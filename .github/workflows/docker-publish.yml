@@ -23,8 +23,7 @@ jobs:
         run: yes | pacman -Scc
       
       - name: Install dependencies
-        run: |
-          pacman -Syyu --noconfirm --needed docker
+        run: pacman -Syyu --noconfirm --needed docker
 
       - name: Build core
         run: |

@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: Install dependencies
-        run: pacman -Syyu --noconfirm --needed docker
+        run: pacman -S --noconfirm --needed docker
 
       - name: Build core
         run: |

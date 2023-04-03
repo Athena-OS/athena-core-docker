@@ -5,9 +5,6 @@ on:
     - cron: '22 4 * * 0'
   workflow_dispatch:
 
-env:
-  CORE_IMG: core
-
 jobs:
   docker-publish:
     runs-on: ubuntu-latest
@@ -31,4 +28,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: athenaos/$CORE_IMG:latest
+          tags: athenaos/core:latest

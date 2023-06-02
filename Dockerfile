@@ -36,7 +36,7 @@ RUN pacman -Syu --noconfirm --needed exa python-libtmux python-libtmux sassc hwl
 ###                      FONTS                      ###
 #######################################################
 
-RUN pacman -Syu --noconfirm --needed adobe-source-han-sans-cn-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts gnu-free-fonts nerd-fonts-jetbrains-mono ttf-jetbrains-mono
+RUN pacman -Syu --noconfirm --needed adobe-source-han-sans-cn-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts gnu-free-fonts ttf-jetbrains-mono ttf-jetbrains-mono-nerd
 
 #######################################################
 ###                    UTILITIES                    ###

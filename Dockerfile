@@ -49,7 +49,7 @@ RUN pacman -Syu --noconfirm --needed openssl shellinabox
 ###                ATHENA REPOSITORY                ###
 #######################################################
 
-RUN pacman -Syu --noconfirm --needed  athena-nvchad athena-powershell-config athena-system-config athena-tmux-config athena-vim-config athena-zsh figlet-fonts htb-tools myman nist-feed superbfetch-git toilet-fonts
+RUN pacman -Syu --noconfirm --needed athena-nvchad athena-powershell-config athena-system-config athena-tmux-config athena-vim-config athena-zsh figlet-fonts htb-tools myman nist-feed superbfetch-git toilet-fonts
 
 RUN sed -i "/PACMAN=/d" /usr/local/bin/athena-motd
 RUN sed -i "/echo -e \"\$B    PACMAN/d" /usr/local/bin/athena-motd

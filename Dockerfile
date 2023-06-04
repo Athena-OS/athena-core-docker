@@ -55,7 +55,7 @@ RUN sed -i "/PACMAN=/d" /usr/local/bin/athena-motd
 RUN sed -i "/echo -e \"\$B    PACMAN/d" /usr/local/bin/athena-motd
 RUN echo "athena-motd" >> /etc/zsh/zprofile
 RUN sed -i "s/source ~\/.bash_aliases/source ~\/.bash_aliases\nsource ~\/.bashrc/g" /etc/skel/.zshrc
-RUN sed -iz "s/if \[\[ \\$1 != no-repeat-flag \]\]; then\n  neofetch\nfi/#if \[\[ \$1 != no-repeat-flag \]\]; then\n#  neofetch\n#fi/g" /etc/skel/.zshrc
+RUN sed -iz "s/if \[\[ \\\$1 != no-repeat-flag \]\]; then\n  neofetch\nfi/#if \[\[ \\\$1 != no-repeat-flag \]\]; then\n#  neofetch\n#fi/g" /etc/skel/.zshrc
 
 RUN systemd-machine-id-setup
 RUN rm -rf /etc/skel/.bashrc.pacnew /etc/skel/.flag-work-once

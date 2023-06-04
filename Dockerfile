@@ -54,6 +54,8 @@ RUN pacman -Syu --noconfirm --needed athena-neofetch-config athena-nvchad athena
 RUN sed -i "/PACMAN=/d" /usr/local/bin/athena-motd
 RUN sed -i "/echo -e \"\$B    PACMAN/d" /usr/local/bin/athena-motd
 RUN echo "athena-motd" >> /etc/zsh/zprofile
+RUN sed -i "s/source ~\/.bash_aliases/source ~\/.bash_aliases\nsource ~\/.bashrc/g" /etc/skel/.zshrc
+RUN sed -iz "s/if \[\[ \$1 != no-repeat-flag \]\]; then\n  neofetch\nfi/#if \[\[ \$1 != no-repeat-flag \]\]; then\n#  neofetch\n#fi/g" /etc/skel/.zshrc
 
 RUN systemd-machine-id-setup
 RUN rm -rf /etc/skel/.bashrc.pacnew /etc/skel/.flag-work-once
@@ -62,7 +64,6 @@ RUN useradd -ms /bin/zsh $PUSER
 RUN usermod -aG users,lp,network,power,sys,wheel -u "$PUID" $PUSER && echo "$PUSER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$PUSER
 RUN chmod 044 /etc/sudoers.d/$PUSER
 RUN echo -e "$PUSER\n$PUSER" | passwd "$PUSER"
-RUN sed -i "s/source ~\/.bash_aliases/source ~\/.bash_aliases\nsource ~\/.bashrc/g" /home/$PUSER/.zshrc
 
 USER $PUSER:$PUSER
 WORKDIR /home/$PUSER

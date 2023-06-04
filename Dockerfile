@@ -54,7 +54,7 @@ RUN pacman -Syu --noconfirm --needed athena-neofetch-config athena-nvchad athena
 RUN sed -i "/PACMAN=/d" /usr/local/bin/athena-motd
 RUN sed -i "/echo -e \"\$B    PACMAN/d" /usr/local/bin/athena-motd
 RUN echo "athena-motd" >> /etc/zsh/zprofile
-RUN sed -i "s/source ~\/.bash_aliases/source ~\/.bash_aliases\nsource ~\/.bashrc/g" /etc/skel/.zshrc
+RUN sed -i "s/source ~\/.bash_aliases/source ~\/.bash_aliases\nsource ~\/.bashrc no-repeat-flag/g" /etc/skel/.zshrc
 RUN sed -i "s/  neofetch/#  neofetch/g" /etc/skel/.zshrc
 
 RUN systemd-machine-id-setup

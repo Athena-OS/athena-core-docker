@@ -17,7 +17,7 @@ Find us at:
 
 ## Usage
 
-![image](https://user-images.githubusercontent.com/83867734/222000470-f65a5ff3-90ea-435b-b30f-0143c668cbcd.png)
+![image](https://github.com/Athena-OS/athena-core-docker/assets/83867734/c6d0be74-2014-4ab7-96d7-9b152d6f6561)
 
 Athena OS container has been developed in order to be run also by podman. The choice to use podman comes from its advantages over docker, one of most important: security.
 

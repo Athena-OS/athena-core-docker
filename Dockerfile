@@ -1,18 +1,8 @@
 FROM athenaos/base:latest
 
-ENV LANG=en_US.UTF-8
 ENV TZ=Europe/Zurich
 ENV PUSER=athena
 ENV PUID=1000
-
-# Configure the locale; enable only en_US.UTF-8 and the current locale.
-RUN sed -i -e 's~^\([^#]\)~#\1~' '/etc/locale.gen' && \
-  echo -e '\nen_US.UTF-8 UTF-8' >> '/etc/locale.gen' && \
-  if [[ "${LANG}" != 'en_US.UTF-8' ]]; then \
-  echo "${LANG}" >> '/etc/locale.gen'; \
-  fi && \
-  locale-gen && \
-  echo -e "LANG=${LANG}\nLC_ADDRESS=${LANG}\nLC_IDENTIFICATION=${LANG}\nLC_MEASUREMENT=${LANG}\nLC_MONETARY=${LANG}\nLC_NAME=${LANG}\nLC_NUMERIC=${LANG}\nLC_PAPER=${LANG}\nLC_TELEPHONE=${LANG}\nLC_TIME=${LANG}" > '/etc/locale.conf'
 
 # Configure the timezone.
 RUN echo "${TZ}" > /etc/timezone && \

@@ -1,12 +1,7 @@
 FROM athenaos/base:latest
 
-ENV TZ=Europe/Zurich
 ENV PUSER=athena
 ENV PUID=1000
-
-# Configure the timezone.
-RUN echo "${TZ}" > /etc/timezone && \
-  ln -sf "/usr/share/zoneinfo/${TZ}" /etc/localtime
 
 RUN pacman -Syu --noconfirm
 

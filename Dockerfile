@@ -9,7 +9,7 @@ RUN pacman -Syu --noconfirm
 ###                  BASIC PACKAGES                 ###
 #######################################################
 
-RUN pacman -Syu --noconfirm --needed accountsservice dialog gcc inetutils make man-db man-pages most nano nbd net-tools netctl pv rsync sudo timelineproject-hg vi xdg-user-dirs
+RUN pacman -Syu --noconfirm --needed accountsservice dialog gcc inetutils make man-db man-pages most nano nbd net-tools netctl pv rsync sudo timelineproject-hg vi
 
 #######################################################
 ###                   DEPENDENCIES                  ###

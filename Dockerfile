@@ -46,13 +46,12 @@ RUN systemd-machine-id-setup
 RUN rm -rf /etc/skel/.bashrc.pacnew /etc/skel/.flag-work-once
 
 RUN useradd -ms /bin/zsh $PUSER
-RUN usermod -aG users,lp,network,power,sys,wheel -u "$PUID" $PUSER && echo "$PUSER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$PUSER
+RUN usermod -aG lp,rfkill,sys,wheel -u "$PUID" $PUSER && echo "$PUSER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$PUSER
 RUN chmod 044 /etc/sudoers.d/$PUSER
 RUN echo -e "$PUSER\n$PUSER" | passwd "$PUSER"
 
 USER $PUSER:$PUSER
 WORKDIR /home/$PUSER
-RUN xdg-user-dirs-update
 
 # Running as login shell for executing /etc/zsh/zprofile script and the custom MOTD
 CMD ["/bin/zsh", "-l"]

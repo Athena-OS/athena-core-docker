@@ -18,7 +18,7 @@ RUN sed -i "s/source ~\/.bash_aliases/source ~\/.bash_aliases\nsource ~\/.bashrc
 RUN sed -i "s/  neofetch/#  neofetch/g" /etc/skel/.zshrc
 
 RUN systemd-machine-id-setup
-RUN rm -rf /etc/skel/.bashrc.pacnew /etc/skel/.flag-work-once
+RUN rm -rf /etc/skel/.bashrc.pacnew
 
 RUN useradd -ms /bin/zsh $PUSER
 RUN usermod -aG lp,rfkill,sys,wheel -u "$PUID" $PUSER && echo "$PUSER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$PUSER

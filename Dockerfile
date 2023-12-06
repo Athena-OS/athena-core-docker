@@ -3,7 +3,7 @@ FROM athenaos/base:latest
 ENV PUSER=athena
 ENV PUID=1000
 
-RUN pacman -Syu --noconfirm --needed \
+RUN pacman -Syyu --noconfirm --needed \
 accountsservice dialog gcc inetutils make man-db man-pages most nano nbd net-tools netctl pv rsync sudo timelineproject-hg vi \
 eza pocl \
 noto-fonts-cjk noto-fonts-emoji ttf-jetbrains-mono ttf-jetbrains-mono-nerd \

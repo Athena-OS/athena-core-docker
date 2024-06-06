@@ -192,7 +192,7 @@ If you want to make local modifications to these images for development purposes
 ```bash
 git clone https://github.com/Athena-OS/athena-core-docker.git
 cd athena-core-docker
-docker build \
+docker buildx build \
   --no-cache \
   --network host \
   --pull \

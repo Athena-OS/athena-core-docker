@@ -7,14 +7,14 @@ RUN pacman -Syyu --noconfirm --needed \
 accountsservice bind dialog fakeroot gcc inetutils make man-db man-pages most nano nbd net-tools netctl pv rsync sudo timelineproject-hg vi \
 eza pocl \
 noto-fonts-cjk noto-fonts-emoji ttf-jetbrains-mono ttf-jetbrains-mono-nerd \
-asciinema bash-completion bashtop bat bc blesh-git cmatrix cowsay cron downgrade espeakup fastfetch figlet-fonts file-roller fortune-mod git imagemagick jdk-openjdk jq lib32-glibc lolcat lsd myman nano-syntax-highlighting ncdu neofetch nvchad-git nyancat openbsd-netcat openvpn orca p7zip paru pfetch polkit powershell-bin python-pywhat reflector sl superbfetch-git textart tidy tk tmux toilet-fonts tree ufw unzip vim vnstat wget which xclip xmlstarlet zoxide \
+asciinema bash-completion bashtop bat bc blesh-git cmatrix cowsay cron downgrade espeakup fastfetch figlet-fonts file-roller fortune-mod git imagemagick jdk-openjdk jq lib32-glibc lolcat lsd myman nano-syntax-highlighting ncdu nvchad-git nyancat openbsd-netcat openvpn orca p7zip paru pfetch polkit powershell-bin python-pywhat reflector sl superbfetch-git textart tidy tk tmux toilet-fonts tree ufw unzip vim vnstat wget which xclip xmlstarlet zoxide \
 openssl \
 athena-bash athena-config athena-powershell-config athena-tmux-config athena-vim-config athena-zsh cyber-toolkit htb-toolkit nist-feed
 
 RUN sed -i "/PACMAN=/d" /usr/local/bin/athena-motd
 RUN sed -i "/echo -e \"\$B    PACMAN/d" /usr/local/bin/athena-motd
 RUN echo "athena-motd" >> /etc/zsh/zprofile
-RUN sed -i "s/  neofetch/#  neofetch/g" /etc/skel/.zshrc
+RUN sed -i "s/  fastfetch/#  fastfetch/g" /etc/skel/.zshrc
 
 RUN systemd-machine-id-setup
 RUN rm -rf /etc/skel/.bashrc.pacnew
